@@ -1,0 +1,9 @@
+source /etc/bash_completion.d/git
+
+in .bashrc
+
+for file in /etc/bash_completion.d/* ; do
+    source "$file"
+done
+
+sudo dnf install bash-completion
