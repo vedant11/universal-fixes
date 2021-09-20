@@ -1,0 +1,2 @@
+du -hb # for disk usage
+ls -ls # doesn't give the space occupied since directory is a file and internal file spaces are not processed
