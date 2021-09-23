@@ -1,0 +1,28 @@
+# logging conf
+LOGGING = {
+    'version': 1,
+    'loggers': {
+        'my_workspace': {
+            'handlers': ['my_console'],
+            'level': 'DEBUG',
+            'propogate': False
+        },
+    },
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        }
+    },
+    'handlers': {
+        'my_console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+}
+________________
+# apache2 conf example
+
+  ErrorLogFormat connection "[%t][%l] New connection: [connection: %{c}L] [client %a]"
+  ErrorLogFormat request "[%t] New request: [connection: %{c}L][request: %L][pid %P][client %a]"
+  ErrorLogFormat "[%t][%l][connection: %{c}L][request: %L][client: %a] %M"
