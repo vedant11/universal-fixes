@@ -19,3 +19,9 @@ int main() {
 helps to avoid: 
 - creating a new edge object and individually assigning each property/ creating a consructor
 - use tuples'/pair's definition in the vector, i.e. vector<tuple<int,int,int...
+_____
+Also, if you ever need to add your struct in ordered containers like maps, priority_queues or sets,
+you need to have a < comparator function
+
+the cleanest way for lexicographic comparision is: 
+https://stackoverflow.com/questions/3882467/defining-operator-for-a-struct
