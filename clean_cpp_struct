@@ -1,0 +1,21 @@
+if you ever need a vector with keyword-arg tuples as in python, cpp has a clean way of doing it
+the order of the int defined in the struct is important as the same order must be used during push_back
+
+this is the simplest way to do it:
+
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	struct edge{int id, weight;};
+	vector<edge> g;
+	g.push_back({1,2});
+	cout<< (g[0].id==1) << "\t" << (g[0].weight==2) <<"\n";
+	return 0;
+}
+
+
+helps to avoid: 
+- creating a new edge object and individually assigning each property/ creating a consructor
+- use tuples'/pair's definition in the vector, i.e. vector<tuple<int,int,int...
