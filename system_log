@@ -1,0 +1,7 @@
+# top shows dynamic status of system CPU and mem usage
+# crontab -e-
+# 0 */12 * * * sh ~/mem_snap.sh;
+# shell file starts here
+tm=$(date '+%B %V %T.%3N:');
+echo ${tm} >> ~/usage_logfile.log;
+top -n 1 -b >> ~/usage_logfile.log;
