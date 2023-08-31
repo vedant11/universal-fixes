@@ -1,110 +1,113 @@
-- clone repo
-- install apache2
+-   clone repo
+-   install apache2
     > sudo apt install apache2
-- make venv and pip install `requirements.txt` | run `makemigrations`, `migrate` and `collectstatic` in django `manage.py`
-    - dont forget to make manage.py executable:
+-   make venv and pip install `requirements.txt` | run `makemigrations`, `migrate` and `collectstatic` in django `manage.py`
+    -   dont forget to make manage.py executable:
         > sudo chmod a+x /path/to/manage.py
-- make config files
-    - one to pass to ssl; another for ssl
+-   make config files
 
-    - examples:
-        <details>
-            <summary>
-            conf files
-            </summary>
-            <br>
-        
-            - mcep.explorin.io.conf:
+    -   one to pass to ssl; another for ssl
 
-                <VirtualHost *:80>
-                ServerName mcep.explorin.io
-                ServerAlias mcep.explorin.io
+    -   examples:
+          <details>
+              <summary>
+              conf files
+              </summary>
+              <br>
+          
+              - <SERVER_NAME>.conf:
 
-                Header set Access-Control-Allow-Origin "https://mcep.explorin.io"
-                Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
-                Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD"
+                  <VirtualHost *:80>
+                  ServerName <SERVER_NAME>
+                  ServerAlias <SERVER_NAME>
 
-                RewriteEngine on
-                RewriteCond %{SERVER_NAME} =mcep.explorin.io
-                RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,QSA,R=permanent]
+                  Header set Access-Control-Allow-Origin "https://<SERVER_NAME>"
+                  Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+                  Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD"
 
-                WSGIPassAuthorization On
-                WSGIApplicationGroup %{GLOBAL}
-                </VirtualHost>
-            - mcep.explorin.io-ssl.conf:
+                  RewriteEngine on
+                  RewriteCond %{SERVER_NAME} =<SERVER_NAME>
+                  RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,QSA,R=permanent]
 
-                <IfModule mod_ssl.c>
-                <VirtualHost *:443>
-                ServerName mcep.explorin.io
-                ServerAlias mcep.explorin.io
+                  WSGIPassAuthorization On
+                  WSGIApplicationGroup %{GLOBAL}
+                  </VirtualHost>
+              - <SERVER_NAME>-ssl.conf:
 
-                Header set Access-Control-Allow-Origin "https://mcep.explorin.io"
-                Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Acmcept"
-                Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD"
+                  <IfModule mod_ssl.c>
+                  <VirtualHost *:443>
+                  ServerName <SERVER_NAME>
+                  ServerAlias <SERVER_NAME>
 
-                DocumentRoot /var/www/html
+                  Header set Access-Control-Allow-Origin "https://<SERVER_NAME>"
+                  Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Acmcept"
+                  Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD"
 
-                <Directory /home/ubuntu/cep-platform/cep_platform>
-                    <Files wsgi.py>
-                    Require all granted
-                    </Files>
-                </Directory>
+                  DocumentRoot /var/www/html
 
-                <Directory /home/ubuntu/venv>
-                    Require all granted
-                </Directory>
+                  <Directory /home/ubuntu/<path_to_application>/<repository_name>>
+                      <Files wsgi.py>
+                      Require all granted
+                      </Files>
+                  </Directory>
 
-                <Directory /home/ubuntu/cep-platform/media>
-                    Require all granted
-                </Directory>
+                  <Directory /home/ubuntu/venv>
+                      Require all granted
+                  </Directory>
 
-                <Directory /home/ubuntu/cep-platform/static>
-                    Require all granted
-                </Directory>
+                  <Directory /home/ubuntu/<path_to_application>/media>
+                      Require all granted
+                  </Directory>
 
-                <Directory /home/ubuntu/cep-platform/logs>
-                    Require all granted
-                </Directory>
+                  <Directory /home/ubuntu/<path_to_application>/static>
+                      Require all granted
+                  </Directory>
 
-                Alias /media/ /home/ubuntu/cep-platform/media/
-                Alias /static/ /home/ubuntu/cep-platform/static/
-                WSGIPassAuthorization on
+                  <Directory /home/ubuntu/<path_to_application>/logs>
+                      Require all granted
+                  </Directory>
 
-                WSGIDaemonProcess mcep.explorin.io \
-                    python-home=/home/ubuntu/venv \
-                    python-path=/home/ubuntu/cep-platform
+                  Alias /media/ /home/ubuntu/<path_to_application>/media/
+                  Alias /static/ /home/ubuntu/<path_to_application>/static/
+                  WSGIPassAuthorization on
 
-                WSGIScriptAlias / /home/ubuntu/cep-platform/cep_platform/wsgi.py \
-                process-group=mcep.explorin.io \
-                application-group=%{GLOBAL}
+                  WSGIDaemonProcess <SERVER_NAME> \
+                      python-home=/home/ubuntu/venv \
+                      python-path=/home/ubuntu/<path_to_application>
 
-                ErrorLog /var/log/apache2/mcep.explorin.io.log
-                LogLevel warn
-                CustomLog /var/log/apache2/mcep.explorin.io-access.log combined
+                  WSGIScriptAlias / /home/ubuntu/<path_to_application>//wsgi.py \
+                  process-group=<SERVER_NAME> \
+                  application-group=%{GLOBAL}
 
-                SSLEngine on
-                Include /etc/letsencrypt/options-ssl-apache.conf
-                SSLCertificateFile /etc/letsencrypt/live/mcep.explorin.io/fullchain.pem
-                SSLCertificateKeyFile /etc/letsencrypt/live/mcep.explorin.io/privkey.pem
-                </VirtualHost>
-                </IfModule>
-        </details>
-- enable apache modules for django+python+wsgi:
+                  ErrorLog /var/log/apache2/<SERVER_NAME>.log
+                  LogLevel warn
+                  CustomLog /var/log/apache2/<SERVER_NAME>-access.log combined
+
+                  SSLEngine on
+                  Include /etc/letsencrypt/options-ssl-apache.conf
+                  SSLCertificateFile /etc/letsencrypt/live/<SERVER_NAME>/fullchain.pem
+                  SSLCertificateKeyFile /etc/letsencrypt/live/<SERVER_NAME>/privkey.pem
+                  </VirtualHost>
+                  </IfModule>
+
+          </details>
+
+-   enable apache modules for django+python+wsgi:
     > sudo apt-get install python3-pip apache2 libapache2-mod-wsgi-py3
-- enable sites and modules
+-   enable sites and modules
     > sudo a2ensite yourfile.conf yourfile-ssl.config & sudo apt install python3-certbot-apache & sudo service apache2 restart
-- get certificate
-    - install certbot and python modules
-        > sudo apt install certbot 
+-   get certificate
 
-    - get certificate
+    -   install certbot and python modules
+
+        > sudo apt install certbot
+
+    -   get certificate
         ```
         sudo certbot --authenticator standalone \
                     --installer apache \
-                    -d mcep.explorin.io \
+                    -d <SERVER_NAME> \
                     --pre-hook "apachectl stop" \
-                    --non-interactive --agree-tos -m admin@explorin.io \
+                    --non-interactive --agree-tos -m admin@<SERVER_NAME> \
                     --post-hook "apachectl start"
         ```
-
-               
