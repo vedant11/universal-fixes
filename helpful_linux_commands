@@ -1,0 +1,3 @@
+lscpu: get CPU architecture data
+ldd: get linked binaries (shared libraries) for an executable binary
+netstat -tlnp | grep <PORT_NUMBER>: get active process for a certain port number
