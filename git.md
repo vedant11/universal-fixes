@@ -1,7 +1,7 @@
 ## squash last two commits
 
 ```sh
-git rebase -s HEAD~2
+git rebase -i HEAD~2
 ```
 
 <!-- then make sure prefix is `pick` for the commit you want to keep preserved. rest, `s` -->
