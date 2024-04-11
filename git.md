@@ -17,3 +17,9 @@ git commit --amend -m "New commit message"
 ```sh
 GIT_COMMITTER_DATE="date" git commit --amend --no-edit --date "date"
 ```
+
+## generate patch
+
+```sh
+git stash show -p stash@{0} > changes.patch
+```
