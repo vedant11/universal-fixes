@@ -1,0 +1,5 @@
+## extract libraries that will be installed using the deb
+
+```sh
+dpkg-deb -R /path/to/.deb /path/to/extract
+```
