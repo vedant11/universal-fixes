@@ -18,8 +18,16 @@ git commit --amend -m "New commit message"
 GIT_COMMITTER_DATE="date" git commit --amend --no-edit --date "date"
 ```
 
-## generate patch
+## update stash and save patch
 
 ```sh
+git stash list # check whether any other import work is up
+git stash drop "$(git stash list | awk '/On your-branch-name: your-message-v1/ {gsub(/:/, "", $1); print $1}')"
+# or git stash drop stash@{your-specific-index}
+git add .
+git stash save -m "your-message-v2"
+# get the changes back
+git stash apply
+# generate patch
 git stash show -p stash@{0} > changes.patch
 ```
