@@ -3,3 +3,10 @@
 ```sh
 dpkg-deb -R /path/to/.deb /path/to/extract
 ```
+
+## locate the config, libs, and bins for an apt package
+
+```sh
+sudo apt install plocate
+locate package-name
+```
