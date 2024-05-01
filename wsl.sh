@@ -9,3 +9,8 @@ wsl.exe --import myubuntu2 <destination> <path>myubuntu_backup.tar
 
 # default user for wsl
 wsl.exe config --default-user <username>
+
+# force reclaim storage
+wsl --manage <distro> --set-sparse false
+optimize-vhd -Path pathto\ext4.vhdx -Mode full
+wsl --manage <distro> --set-sparse true # to turn on auto-reclaiming of storage
