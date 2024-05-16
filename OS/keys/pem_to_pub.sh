@@ -1,0 +1,1 @@
+ssh-keygen -y -f key.pem > id.pub # additionally, add -m flag for PEM format
