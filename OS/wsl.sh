@@ -14,3 +14,6 @@ wsl.exe config --default-user <username>
 wsl --manage <distro> --set-sparse false
 optimize-vhd -Path pathto\ext4.vhdx -Mode full
 wsl --manage <distro> --set-sparse true # to turn on auto-reclaiming of storage
+
+# get path of external virtualized disk
+(Get-ChildItem -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss | Where-Object { $_.GetValue("DistributionName") -eq 'Ubuntu-22.04' }).GetValue("BasePath") + "\ext4.vhdx"

@@ -1,3 +1,13 @@
+## study git
+
+```sh
+git clone git@github.com:git/git.git
+git rev-list --max-parents=0 HEAD
+git checkout e83c5163316f89bfbde7d9ab23ca2e25604af290
+git log
+code README.md
+```
+
 ## squash last two commits
 
 ```sh
