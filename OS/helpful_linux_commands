@@ -1,2 +1,2 @@
 lscpu: get CPU architecture data
-ldd: get linked binaries (shared libraries) for an executable binary
+ldd: get linked binaries (shared libraries) for a dynamic executable
