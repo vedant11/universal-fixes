@@ -1,0 +1,12 @@
+cd - # to go back to the previous directory you were in
+# the following styles can be used for `touch` as well
+mkdir {dir1, dir2, dir3} # create multiple combinations of dirs
+mkdir dir{4..10}         # range of dirs
+
+# the following are potentially useless if shell allows back-search
+history 5                   # show the last 5 commands
+!-2                         # run the second last command
+!-3*:p                      # print the third last command and its arguments
+!-4:s/misspelled/corrected/ # correct the command and run it
+!faster                     # run the last command that starts with `faster`
+!faster:p                   # print the last command that starts with `faster`

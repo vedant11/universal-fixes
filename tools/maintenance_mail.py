@@ -4,11 +4,12 @@
 
 import sys
 
-message= str(sys.argv[1])
+message = str(sys.argv[1])
 import smtplib
 import email.message
-server = smtplib.SMTP('smtp.gmail.com:587')
- 
+
+server = smtplib.SMTP("smtp.gmail.com:587")
+
 email_content = """
 <html>
  
@@ -57,7 +58,7 @@ email_content = """
               <h5>What is causing the maintenance period?</h5>
               
 """
-third="""
+third = """
             </td>
           </tr>
         </table>
@@ -74,23 +75,23 @@ third="""
  
  
 """
-second="""<p>%s</p>"""
-second= (second % (message))
- 
+second = """<p>%s</p>"""
+second = second % (message)
+
 msg = email.message.Message()
-msg['Subject'] = 'Server under maintenance'
- 
- 
-msg['From'] = ''
-msg['To'] = ''
+msg["Subject"] = "Server under maintenance"
+
+
+msg["From"] = ""
+msg["To"] = ""
 password = ""
-msg.add_header('Content-Type', 'text/html')
-msg.set_payload(email_content+second+third)
- 
-s = smtplib.SMTP('smtp.gmail.com: 587')
+msg.add_header("Content-Type", "text/html")
+msg.set_payload(email_content + second + third)
+
+s = smtplib.SMTP("smtp.gmail.com: 587")
 s.starttls()
- 
+
 # Login Credentials for sending the mail
-s.login(msg['From'], password)
- 
-s.sendmail(msg['From'], [msg['To']], msg.as_string())
+s.login(msg["From"], password)
+
+s.sendmail(msg["From"], [msg["To"]], msg.as_string())

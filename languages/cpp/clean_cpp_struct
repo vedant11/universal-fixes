@@ -1,27 +1,31 @@
-if you ever need a vector with keyword-arg tuples as in python, cpp has a clean way of doing it
-the order of the int defined in the struct is important as the same order must be used during push_back
+// if you ever need a vector with keyword-arg tuples as in python, cpp has a
+// clean way of doing it the order of the int defined in the struct is important
+// as the same order must be used during push_back
 
-this is the simplest way to do it:
+// this is the simplest way to do it:
 
 #include <iostream>
-#include<vector>
+#include <vector>
 using namespace std;
 
 int main() {
-	struct edge{int id, weight;};
-	vector<edge> g;
-	g.push_back({1,2});
-	cout<< (g[0].id==1) << "\t" << (g[0].weight==2) <<"\n";
-	return 0;
+  struct edge {
+    int id, weight;
+  };
+  vector<edge> g;
+  g.push_back({1, 2});
+  cout << (g[0].id == 1) << "\t" << (g[0].weight == 2) << "\n";
+  return 0;
 }
 
+// helps to avoid:
+// - creating a new edge object and individually assigning each property/
+// creating a consructor
+// - use tuples'/pair's definition in the vector, i.e.
+// vector<tuple<int,int,int...
+// _____
+// Also, if you ever need to add your struct in ordered containers like maps,
+// priority_queues or sets, you need to have a < comparator function
 
-helps to avoid: 
-- creating a new edge object and individually assigning each property/ creating a consructor
-- use tuples'/pair's definition in the vector, i.e. vector<tuple<int,int,int...
-_____
-Also, if you ever need to add your struct in ordered containers like maps, priority_queues or sets,
-you need to have a < comparator function
-
-the cleanest way for lexicographic comparision is: 
-https://stackoverflow.com/questions/3882467/defining-operator-for-a-struct
+// the cleanest way for lexicographic comparision is:
+// https://stackoverflow.com/questions/3882467/defining-operator-for-a-struct

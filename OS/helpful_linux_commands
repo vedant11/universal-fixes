@@ -1,2 +1,7 @@
-lscpu: get CPU architecture data
-ldd: get linked binaries (shared libraries) for a dynamic executable
+# adding interactive comments
+setopt INTERACTIVE_COMMENTS
+# or
+echo "setopt INTERACTIVE_COMMENTS" >>~/.zshrc
+
+lscpu # get CPU architecture data
+ldd   # get linked binaries (shared libraries) for a dynamic executable

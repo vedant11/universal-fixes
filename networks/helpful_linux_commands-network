@@ -1,3 +1,3 @@
-netstat -tlnp | grep <PORT_NUMBER>: get active process for a certain port number
+netstat -tlnp | grep <PORT_NUMBER >: get active process for a certain port number
 
 # This program is mostly obsolete. Replacement for netstat is ss. Replacement for netstat -r is ip route. Replacement for netstat -i is ip -s link. Replacement for netstat -g is ip maddr.

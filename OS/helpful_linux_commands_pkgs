@@ -1,12 +1,4 @@
-## extract libraries that will be installed using the deb
+dpkg-deb -R /path/to/.deb /path/to/extract # extract libraries that will be installed using the deb
 
-```sh
-dpkg-deb -R /path/to/.deb /path/to/extract
-```
-
-## locate the config, libs, and bins for an apt package
-
-```sh
-sudo apt install plocate
+sudo apt install plocate # locate the config, libs, and bins for an apt package
 locate package-name
-```
