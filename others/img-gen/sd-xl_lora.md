@@ -36,4 +36,6 @@ Locally or runpod for compute
 
     9. Adafactor optimizer with constant LR Scheduler should be fine
 
-    10. Gradient checkpointing and Shuffle caption
+    10. Gradient checkpointing and Shuffle caption\
+
+    11. Optimizer extra args: `scale_parameter=False relative_step=False warmup_init=False`
