@@ -5,3 +5,4 @@ echo "setopt INTERACTIVE_COMMENTS" >>~/.zshrc
 
 lscpu # get CPU architecture data
 ldd   # get linked binaries (shared libraries) for a dynamic executable
+nm -D # get dynamic symbols (for dynamic linking) from object file
