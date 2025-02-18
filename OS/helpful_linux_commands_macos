@@ -1,0 +1,8 @@
+# not macos: adding interactive comments
+# not macos: setopt INTERACTIVE_COMMENTS
+# not macos: or
+# not macos: echo "setopt INTERACTIVE_COMMENTS" >>~/.zshrc
+
+# not macos: lscpu # get CPU architecture data
+otool -L   # get linked binaries (shared libraries) for a dynamic executable
+# not macos: nm -D # get dynamic symbols (for dynamic linking) from object file
