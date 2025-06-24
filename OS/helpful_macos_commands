@@ -1,0 +1,7 @@
+# stop sleeping behaviour
+caffeinate # -i can start in detached
+
+# stop Gatekeeper
+sudo spctl --master-disable
+# enable Gatekeeper
+sudo spctl --master-enable
