@@ -6,3 +6,14 @@ echo "setopt INTERACTIVE_COMMENTS" >>~/.zshrc
 lscpu # get CPU architecture data
 ldd   # get linked binaries (shared libraries) for a dynamic executable
 nm -D # get dynamic symbols (for dynamic linking) from object file
+
+dig google.com # get DNS records
+host google.com # like `dig` command but human-readable
+traceroute google.com # sends packets with different TTLs - routers send back ICMP time exceeded, revealing their identities
+ping google.com # sends packets continuously
+mtr -rw google.com # powered `traceroute` + `ping` command with live feed
+ip addr # shows local interface status and replaces the old `ifconfig` command
+ip route # Data gateway to the internet
+ss -tunlp # socket connections; replaces the old `netstat` - TCP, UDP, Numeric Ports, Listening, with Process IDs
+sudo tcpdump -i eth0 host google.com # for packet sniffing to investigate broken handshakes
+curl -v https://google.com # for L7 handshake inspection - TLS cert exchange and HTTP headers
